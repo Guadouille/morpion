@@ -1,0 +1,17 @@
+	Morpion Project:
+
+Justine: A repartir
+Laurène: A repartir
+Antonin: A repartir
+
+Player = X
+IA= O
+[
+0 0 0
+0 0 0
+0 0 0
+]
+dimension objet grafique:
+    grille: 1000px par 1000px
+    O: 100px par 100px
+    X: 100px par 100px
