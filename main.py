@@ -1,25 +1,25 @@
 import pygame
 
-def playToken(board,key):
+def playToken(board,key, who):
     print(key)
     if key == pygame.K_KP1:
-        board[2][0] = "1"
+        board[2][0] = who
     if key == pygame.K_KP2:
-        board[2][1] = "1"
+        board[2][1] = who
     if key == pygame.K_KP3:
-        board[2][2] = "1"
+        board[2][2] = who
     if key == pygame.K_KP4:
-        board[1][0] = "1"
+        board[1][0] = who
     if key == pygame.K_KP5:
-        board[1][1] = "1"
+        board[1][1] = who
     if key == pygame.K_KP6:
-        board[1][2] = "1"
+        board[1][2] = who
     if key == pygame.K_KP7:
-        board[0][0] = "1"
+        board[0][0] = who
     if key == pygame.K_KP8:
-        board[0][1] = "1"
+        board[0][1] = who
     if key == pygame.K_KP9:
-        board[0][2] = "1"
+        board[0][2] = who
     print(board)
 
 
@@ -48,6 +48,37 @@ while running:
         screen.blit(rond, (150,300))
     if board[2][2] == "1":
         screen.blit(rond, (300,300))
+    if board[1][0] == "1":
+        screen.blit(rond, (0,150))
+    if board[1][1] == "1":
+        screen.blit(rond, (150,150))
+    if board[1][2] == "1":
+        screen.blit(rond, (300,150))
+    if board[0][0] == "1":
+        screen.blit(rond, (0,0))
+    if board[0][1] == "1":
+        screen.blit(rond, (150,0))
+    if board[0][2] == "1":
+        screen.blit(rond, (300,0))
+    if board[2][0] == "2":
+        screen.blit(croix, (0,300))
+    if board[2][1] == "2":
+        screen.blit(croix, (150,300))
+    if board[2][2] == "2":
+        screen.blit(croix, (300,300))
+    if board[1][0] == "2":
+        screen.blit(croix, (0,150))
+    if board[1][1] == "2":
+        screen.blit(croix, (150,150))
+    if board[1][2] == "2":
+        screen.blit(croix, (300,150))
+    if board[0][0] == "2":
+        screen.blit(croix, (0,0))
+    if board[0][1] == "2":
+        screen.blit(croix, (150,0))
+    if board[0][2] == "2":
+        screen.blit(croix, (300,0))
+
 
     for event in pygame.event.get():
 
@@ -57,7 +88,7 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             key = event.key
-            playToken(board,key)
+            playToken(board,key, "2")
 
     #metre a jour l'ecran
     pygame.display.flip()
