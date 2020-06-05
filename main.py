@@ -100,6 +100,18 @@ texte = ["Initialization OK!"]
 player = random.randint(1,2)
 texte.append("Turn player " + str(player))
 
+runAccueil = True
+accueil = pygame.image.load("assets/accueil.png").convert()
+
+while runAccueil:
+    screen.blit(accueil, (0,0))
+    pygame.display.flip()
+    pygame.time.Clock().tick(30)
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_KP1:
+            runAccueil = False
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+            pygame.quit()
 
 while running:
     #le background
@@ -117,6 +129,8 @@ while running:
 
         if event.type == pygame.QUIT:
             running = False
+            pygame.quit()
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             pygame.quit()
 
         if event.type == pygame.KEYDOWN:
