@@ -7,40 +7,40 @@ def playToken(board,key, who, texte):
     if key == pygame.K_KP1:
         if board[2][0] == 0:
             board[2][0] = who
-            return true
+            return True
     if key == pygame.K_KP2:
         if board[2][1] == 0:
             board[2][1] = who
-            return true
+            return True
     if key == pygame.K_KP3:
         if board[2][2]==0:
             board[2][2] = who
-            return true
+            return True
     if key == pygame.K_KP4:
         if board [1][0]==0:
             board[1][0] = who
-            return true
+            return True
     if key == pygame.K_KP5:
         if board[1][1]==0:
             board[1][1] = who
-            return true
+            return True
     if key == pygame.K_KP6:
         if board[1][2]==0:
-        board[1][2] = who
-        return true
+            board[1][2] = who
+            return True
     if key == pygame.K_KP7:
         if board[0][0]==0:
-        board[0][0] = who
-        return true
+            board[0][0] = who
+            return True
     if key == pygame.K_KP8:
         if board[0][1]==0:
-        board[0][1] = who
-        return true
+            board[0][1] = who
+            return True
     if key == pygame.K_KP9:
         if board[0][2]==0:
-        board[0][2] = who
-        return true
-    return false
+            board[0][2] = who
+            return True
+    return False
 
 def updateDisplay(board, rond, croix):
     #dispaly board, easy to improve in a simpler function and for loop
