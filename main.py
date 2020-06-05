@@ -1,5 +1,6 @@
 import pygame
 import console
+import random
 
 # fill board with 1 or 2 given key and who
 def playToken(board,key, who, texte):
@@ -82,7 +83,7 @@ pygame.display.flip()
 texte = ["Initialization OK!"]
 # who start
 player = random.randint(1,2)
-print("le joueur qui commence est le joueur" + str(player))
+texte.append("le joueur qui commence est le joueur" + str(player))
 
 
 while running:
@@ -105,7 +106,11 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             key = event.key
-            playToken(board,key, 1, texte)
+            playToken(board,key, player, texte)
+        if player = 1:
+            player = 2
+        elif player = 1
+
 
     #metre a jour l'ecran
     pygame.display.flip()
