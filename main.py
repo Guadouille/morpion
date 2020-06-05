@@ -103,6 +103,10 @@ texte.append("Turn player " + str(player))
 runAccueil = True
 accueil = pygame.image.load("assets/accueil.png").convert()
 
+son = pygame.mixer.Sound("assets/shout.wav")
+son.play()
+
+
 while runAccueil:
     screen.blit(accueil, (0,0))
     pygame.display.flip()
