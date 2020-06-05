@@ -23,25 +23,7 @@ def playToken(board,key, who):
         board[0][2] = who
     print(board)
 
-# board is a table of 3 tables
-board=[[0,0,0], [0,0,0], [0,0,0]]
-
-pygame.init()
-
-pygame.display.set_caption("morpion")
-screen = pygame.display.set_mode((400,400))
-running = True
-background = pygame.image.load("assets/grille.png")
-rond= pygame.image.load("assets/O.png")
-croix= pygame.image.load("assets/X.png")
-white = ((255,255,255))
-screen.fill(white)
-pygame.display.flip()
-
-while running:
-    #le background
-    screen.fill(white)
-    screen.blit(background, (0,0))
+def updateDisplay(board, rond, croix):
     #dispaly board, easy to improve in a simpler function and for loop
     if board[2][0] == 1:
         screen.blit(rond, (0,300))
@@ -80,6 +62,28 @@ while running:
     if board[0][2] == 2:
         screen.blit(croix, (300,0))
 
+# board is a table of 3 tables
+board=[[0,0,0], [0,0,0], [0,0,0]]
+
+pygame.init()
+
+pygame.display.set_caption("morpion")
+screen = pygame.display.set_mode((400,400))
+running = True
+background = pygame.image.load("assets/grille.png")
+rond= pygame.image.load("assets/O.png")
+croix= pygame.image.load("assets/X.png")
+white = ((255,255,255))
+screen.fill(white)
+pygame.display.flip()
+
+while running:
+    #le background
+    screen.fill(white)
+    screen.blit(background, (0,0))
+    # display updated board
+    updateDisplay(board, rond, croix)
+
 
     for event in pygame.event.get():
 
@@ -89,7 +93,7 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             key = event.key
-            playToken(board,key, 2)
+            playToken(board,key, 1)
 
     #metre a jour l'ecran
     pygame.display.flip()
