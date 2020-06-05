@@ -98,7 +98,7 @@ pygame.display.flip()
 texte = ["Initialization OK!"]
 # who start
 player = random.randint(1,2)
-texte.append("le joueur qui commence est le joueur" + str(player))
+texte.append("Turn player " + str(player))
 
 
 while running:
@@ -121,12 +121,15 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             key = event.key
-            playToken(board,key, player, texte)
-            if player == 1:
-                player = 2
+            result = playToken(board,key, player, texte)
+            if result:
+                if player == 1:
+                    player = 2
+                else:
+                    player= 1
+                texte.append("Turn player " + str(player))
             else:
-                player= 1
-
+                texte.append("Already occupied!")
 
 
     #metre a jour l'ecran
