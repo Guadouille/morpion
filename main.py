@@ -4,28 +4,43 @@ import random
 
 # fill board with 1 or 2 given key and who
 def playToken(board,key, who, texte):
-    print(key)
-    texte.append("ok")
-    console.writeText
     if key == pygame.K_KP1:
-        board[2][0] = who
+        if board[2][0] == 0:
+            board[2][0] = who
+            return true
     if key == pygame.K_KP2:
-        board[2][1] = who
+        if board[2][1] == 0:
+            board[2][1] = who
+            return true
     if key == pygame.K_KP3:
-        board[2][2] = who
+        if board[2][2]==0:
+            board[2][2] = who
+            return true
     if key == pygame.K_KP4:
-        board[1][0] = who
+        if board [1][0]==0:
+            board[1][0] = who
+            return true
     if key == pygame.K_KP5:
-        board[1][1] = who
+        if board[1][1]==0:
+            board[1][1] = who
+            return true
     if key == pygame.K_KP6:
+        if board[1][2]==0:
         board[1][2] = who
+        return true
     if key == pygame.K_KP7:
+        if board[0][0]==0:
         board[0][0] = who
+        return true
     if key == pygame.K_KP8:
+        if board[0][1]==0:
         board[0][1] = who
+        return true
     if key == pygame.K_KP9:
+        if board[0][2]==0:
         board[0][2] = who
-    print(board)
+        return true
+    return false
 
 def updateDisplay(board, rond, croix):
     #dispaly board, easy to improve in a simpler function and for loop
@@ -107,9 +122,11 @@ while running:
         if event.type == pygame.KEYDOWN:
             key = event.key
             playToken(board,key, player, texte)
-        if player = 1:
-            player = 2
-        elif player = 1
+            if player == 1:
+                player = 2
+            else:
+                player= 1
+
 
 
     #metre a jour l'ecran
