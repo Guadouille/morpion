@@ -1,8 +1,11 @@
 import pygame
+import console
 
 # fill board with 1 or 2 given key and who
-def playToken(board,key, who):
+def playToken(board,key, who, texte):
     print(key)
+    texte.append("ok")
+    console.writeText
     if key == pygame.K_KP1:
         board[2][0] = who
     if key == pygame.K_KP2:
@@ -68,7 +71,7 @@ board=[[0,0,0], [0,0,0], [0,0,0]]
 pygame.init()
 
 pygame.display.set_caption("morpion")
-screen = pygame.display.set_mode((400,400))
+screen = pygame.display.set_mode((800,400))
 running = True
 background = pygame.image.load("assets/grille.png")
 rond= pygame.image.load("assets/O.png")
@@ -76,11 +79,17 @@ croix= pygame.image.load("assets/X.png")
 white = ((255,255,255))
 screen.fill(white)
 pygame.display.flip()
+texte = ["Initialization OK!"]
+
 
 while running:
     #le background
     screen.fill(white)
     screen.blit(background, (0,0))
+
+    textTab = console.writeText(texte)
+    for i in range(len(textTab)):
+        screen.blit(textTab[i], (430, 20 * (i + 1)))
     # display updated board
     updateDisplay(board, rond, croix)
 
@@ -93,7 +102,7 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             key = event.key
-            playToken(board,key, 1)
+            playToken(board,key, 1, texte)
 
     #metre a jour l'ecran
     pygame.display.flip()
