@@ -80,6 +80,9 @@ white = ((255,255,255))
 screen.fill(white)
 pygame.display.flip()
 texte = ["Initialization OK!"]
+# who start
+player = random.randint(1,2)
+print("le joueur qui commence est le joueur" + str(player))
 
 
 while running:
