@@ -1,6 +1,7 @@
 import pygame
 import console
 import random
+import time
 
 # fill board with 1 or 2 given key and who
 def playToken(board,key, who):
@@ -169,12 +170,17 @@ while running:
     textTab = console.writeText(texte)
     for i in range(len(textTab)):
         screen.blit(textTab[i], (430, 20 * (i + 1)))
+    font = pygame.font.Font(None, 36)
+    text = font.render(str(scoreplayer1),1,(0,0,0))
+    screen.blit(text, (521, 303))
+    font = pygame.font.Font(None, 36)
+    text = font.render(str(scoreplayer2),1,(0,0,0))
+    screen.blit(text, (521, 361))
     # display updated board
     updateDisplay(board, rond, croix)
 
 
     for event in pygame.event.get():
-
         if event.type == pygame.QUIT:
             running = False
             pygame.quit()
@@ -196,15 +202,10 @@ while running:
                 texte.append("Already occupied!")
             victory = checkVictory(board)
             if victory == 1:
-                texte.append("Victory 1")
                 board=[[0,0,0], [0,0,0], [0,0,0]]
                 nbdecoup = 0
                 scoreplayer1=scoreplayer1+1
-                font = pygame.font.Font(None, 24)
-                text = font.render(str(scoreplayer1),1,(100,100,100))
-                screen.blit(text, (430, 200))
             elif victory == 2:
-                texte.append("Victory 2")
                 board=[[0,0,0], [0,0,0], [0,0,0]]
                 nbdecoup = 0
                 scoreplayer2=scoreplayer2+1
@@ -214,6 +215,5 @@ while running:
                     texte.append("Draw")
                     board=[[0,0,0], [0,0,0], [0,0,0]]
                     nbdecoup = 0
-
-        #metre a jour l'ecran
+    #metre a jour l'ecran
     pygame.display.flip()
