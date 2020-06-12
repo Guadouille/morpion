@@ -98,8 +98,24 @@ pygame.display.flip()
 texte = ["Initialization OK!"]
 # who start
 player = random.randint(1,2)
-texte.append("le joueur qui commence est le joueur" + str(player))
+texte.append("Turn player " + str(player))
 
+runAccueil = True
+accueil = pygame.image.load("assets/accueil.png").convert()
+
+son = pygame.mixer.Sound("assets/shout.wav")
+son.play()
+
+
+while runAccueil:
+    screen.blit(accueil, (0,0))
+    pygame.display.flip()
+    pygame.time.Clock().tick(30)
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_KP1:
+            runAccueil = False
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+            pygame.quit()
 
 while running:
     #le background
@@ -118,15 +134,20 @@ while running:
         if event.type == pygame.QUIT:
             running = False
             pygame.quit()
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+            pygame.quit()
 
         if event.type == pygame.KEYDOWN:
             key = event.key
-            playToken(board,key, player, texte)
-            if player == 1:
-                player = 2
+            result = playToken(board,key, player, texte)
+            if result:
+                if player == 1:
+                    player = 2
+                else:
+                    player= 1
+                texte.append("Turn player " + str(player))
             else:
-                player= 1
-
+                texte.append("Already occupied!")
 
 #afficher le vainqueur
 #rond
