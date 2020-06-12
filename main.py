@@ -42,6 +42,21 @@ def playToken(board,key, who, texte):
             return True
     return False
 
+def checkVictory(board):
+    print(board)
+    #afficher le vainqueur
+    #rond
+    print(board[0][0])
+    print(board[0][1])
+    print(board[0][2])
+    if board[0][0] == 1 and [0][1] == 1 and [0][2] == 1:
+        victory(1)
+
+
+def victory(player):
+    print("victory " + str(player))
+
+
 def updateDisplay(board, rond, croix):
     #dispaly board, easy to improve in a simpler function and for loop
     if board[2][0] == 1:
@@ -148,41 +163,7 @@ while running:
                 texte.append("Turn player " + str(player))
             else:
                 texte.append("Already occupied!")
+            checkVictory(board)
 
-#afficher le vainqueur
-#rond
-    if board[0][0],[0][1],[0][2] == 1 :
-        lagagne = pygame.image.load("Gagnant.png")
-    if board[1][0],[1][1],[1][2] == 1 :
-        lagagne
-    if board[2][0],[2][1],[2][2] == 1 :
-        lagagne
-    if board[0][0],[1][0],[2][0] == 1 :
-        lagagne
-    if board[0][1],[1][1],[2][1] == 1 :
-        lagagne
-    if board[0][2],[1][2],[2][2] == 1 :
-        lagagne
-    if board[0][0],[1][1],[2][2] == 1 :
-        lagagne
-    if board[0][2],[1][1],[2][0] == 1 :
-        lagagne
-#croix
-    if board[0][0],[0][1],[0][2] == 2 :
-        lagagne
-    if board[1][0],[1][1],[1][2] == 2 :
-        lagagne
-    if board[2][0],[2][1],[2][2] == 2 :
-        lagagne
-    if board[0][0],[1][0],[2][0] == 2 :
-        lagagne
-    if board[0][1],[1][1],[2][1] == 2 :
-        lagagne
-    if board[0][2],[1][2],[2][2] == 2 :
-        lagagne
-    if board[0][0],[1][1],[2][2] == 2 :
-        lagagne
-    if board[0][2],[1][1],[2][0] == 2 :
-        lagagne
         #metre a jour l'ecran
     pygame.display.flip()
