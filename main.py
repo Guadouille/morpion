@@ -3,7 +3,7 @@ import console
 import random
 
 # fill board with 1 or 2 given key and who
-def playToken(board,key, who, texte):
+def playToken(board,key, who):
     if key == pygame.K_KP1:
         if board[2][0] == 0:
             board[2][0] = who
@@ -49,13 +49,40 @@ def checkVictory(board):
     print(board[0][0])
     print(board[0][1])
     print(board[0][2])
-    if board[0][0] == 1 and [0][1] == 1 and [0][2] == 1:
-        victory(1)
-
-
-def victory(player):
-    print("victory " + str(player))
-
+    if board[0][0] == 1 and board[0][1] == 1 and board[0][2] == 1:
+        return 1
+    if board[1][0] == 1 and board[1][1] == 1 and board[1][2] == 1:
+        return 1
+    if board[2][0] == 1 and board[2][1]==1 and board[2][2] == 1:
+        return 1
+    if board[0][0]== 1 and board[1][0]==1 and board[2][0] == 1:
+        return 1
+    if board[0][1]==1 and board[1][1]==1 and board[2][1] == 1:
+        return 1
+    if board[0][2]==1 and board[1][2]==1 and board[2][2] == 1:
+        return 1
+    if board[0][0]==1 and board[1][1]==1 and board[2][2] == 1:
+        return 1
+    if board[0][2]==1 and board[1][1]==1 and board[2][0] == 1:
+        return 1
+#croix
+    if board[0][0]==2 and board[0][1]==2 and board[0][2] == 2:
+        return 2
+    if board[1][0]==2 and board[1][1]==2 and board[1][2] == 2:
+        return 2
+    if board[2][0]==2 and board[2][1]==2 and board[2][2] == 2:
+        return 2
+    if board[0][0]==2 and board[1][0]==2 and board[2][0] == 2:
+        return 2
+    if board[0][1]==2 and board[1][1]==2 and board[2][1] == 2:
+        return 2
+    if board[0][2]==2 and board[1][2]==2 and board[2][2] == 2:
+        return 2
+    if board[0][0]==2 and board[1][1]==2 and board[2][2] == 2:
+        return 2
+    if board[0][2]==2 and board[1][1]==2 and board[2][0] == 2:
+        return 2
+    return 0
 
 def updateDisplay(board, rond, croix):
     #dispaly board, easy to improve in a simpler function and for loop
@@ -98,7 +125,9 @@ def updateDisplay(board, rond, croix):
 
 # board is a table of 3 tables
 board=[[0,0,0], [0,0,0], [0,0,0]]
-
+nbdecoup= 0
+scoreplayer1=0
+scoreplayer2=0
 pygame.init()
 
 pygame.display.set_caption("morpion")
@@ -154,16 +183,37 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             key = event.key
-            result = playToken(board,key, player, texte)
+            result = playToken(board,key, player)
             if result:
                 if player == 1:
                     player = 2
                 else:
                     player= 1
                 texte.append("Turn player " + str(player))
+                nbdecoup=nbdecoup+1
+                print("nb coups " + str(nbdecoup))
             else:
                 texte.append("Already occupied!")
-            checkVictory(board)
+            victory = checkVictory(board)
+            if victory == 1:
+                texte.append("Victory 1")
+                board=[[0,0,0], [0,0,0], [0,0,0]]
+                nbdecoup = 0
+                scoreplayer1=scoreplayer1+1
+                font = pygame.font.Font(None, 24)
+                text = font.render(str(scoreplayer1),1,(100,100,100))
+                screen.blit(text, (430, 200))
+            elif victory == 2:
+                texte.append("Victory 2")
+                board=[[0,0,0], [0,0,0], [0,0,0]]
+                nbdecoup = 0
+                scoreplayer2=scoreplayer2+1
+            else:
+                print("No winner")
+                if nbdecoup == 9:
+                    texte.append("Draw")
+                    board=[[0,0,0], [0,0,0], [0,0,0]]
+                    nbdecoup = 0
 
         #metre a jour l'ecran
     pygame.display.flip()
